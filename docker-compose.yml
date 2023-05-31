@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./db/01-create-database.sql:/docker-entrypoint-initdb.d/01-create-database.sql
+      - ./db/02-create-tables.sql:/docker-entrypoint-initdb.d/02-create-tables.sql
+      - ./db/03-populate.sql:/docker-entrypoint-initdb.d/03-populate.sql
+    networks:
+      - dockerchallenge
+  backend:
+    image: g0tn/dockerchallenge-backend
+    expose:
+      - 80:8080
+    networks:
+      - dockerchallenge
+networks:
+  dockerchallenge
