@@ -1,4 +1,4 @@
-package br.com.gotn.dockerchallenge;
+package br.com.gotn.soat1.dockerchallenge;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

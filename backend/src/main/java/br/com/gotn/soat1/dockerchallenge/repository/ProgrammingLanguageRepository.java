@@ -1,6 +1,6 @@
-package br.com.gotn.dockerchallenge.repository;
+package br.com.gotn.soat1.dockerchallenge.repository;
 
-import br.com.gotn.dockerchallenge.model.ProgrammingLanguage;
+import br.com.gotn.soat1.dockerchallenge.model.ProgrammingLanguage;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.stereotype.Repository;
 

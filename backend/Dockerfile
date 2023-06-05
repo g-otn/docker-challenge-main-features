@@ -1,5 +1,18 @@
-FROM eclipse-temurin:17
+FROM bellsoft/liberica-runtime-container:jre-17-slim-musl
 
-COPY target/dockerchallenge-0.0.1.jar dockerchallenge-0.0.1.jar
+# Create and change to non-root user
+ENV APP_USER=backend
+# BusyBox syntax
+RUN addgroup -S $APP_USER && adduser -D -g "" -G $APP_USER $APP_USER
+USER backend
 
-ENTRYPOINT ["java", "-jar", "/dockerchallenge-0.0.1.jar"]
+# Copy app
+ARG JAR_FILE=target/dockerchallenge-0.0.1.jar
+ENV APP_FOLDER=/opt/app
+WORKDIR $APP_FOLDER
+COPY $JAR_FILE app.jar
+
+# Run app
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
+EXPOSE 8080

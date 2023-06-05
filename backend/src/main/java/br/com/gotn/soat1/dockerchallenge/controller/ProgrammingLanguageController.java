@@ -1,9 +1,7 @@
-package br.com.gotn.dockerchallenge.controller;
+package br.com.gotn.soat1.dockerchallenge.controller;
 
-import br.com.gotn.dockerchallenge.model.ProgrammingLanguage;
-import br.com.gotn.dockerchallenge.repository.ProgrammingLanguageRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import br.com.gotn.soat1.dockerchallenge.repository.ProgrammingLanguageRepository;
+import br.com.gotn.soat1.dockerchallenge.model.ProgrammingLanguage;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

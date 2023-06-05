@@ -1,4 +1,4 @@
-package br.com.gotn.dockerchallenge.model;
+package br.com.gotn.soat1.dockerchallenge.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

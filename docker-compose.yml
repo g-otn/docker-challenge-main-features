@@ -3,17 +3,28 @@ services:
     image: postgres
     environment:
       - POSTGRES_PASSWORD=postgres
+    expose:
+      - 5432:5432
+    networks:
+      - docker-challenge
     volumes:
       - ./db/01-create-database.sql:/docker-entrypoint-initdb.d/01-create-database.sql
       - ./db/02-create-tables.sql:/docker-entrypoint-initdb.d/02-create-tables.sql
       - ./db/03-populate.sql:/docker-entrypoint-initdb.d/03-populate.sql
-    networks:
-      - dockerchallenge
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
   backend:
-    image: g0tn/dockerchallenge-backend
-    expose:
-      - 80:8080
+    image: g0tn/soat-docker-challenge-backend
     networks:
-      - dockerchallenge
+      - docker-challenge
+    ports:
+      - 80:8080
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
 networks:
-  dockerchallenge
+  docker-challenge:
