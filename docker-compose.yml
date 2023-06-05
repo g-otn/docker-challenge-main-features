@@ -6,20 +6,22 @@ services:
     expose:
       - 5432:5432
     networks:
-      - docker-challenge
+      - backend-network
     volumes:
       - ./db/01-create-database.sql:/docker-entrypoint-initdb.d/01-create-database.sql
       - ./db/02-create-tables.sql:/docker-entrypoint-initdb.d/02-create-tables.sql
       - ./db/03-populate.sql:/docker-entrypoint-initdb.d/03-populate.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
+      interval: 3s
       timeout: 5s
       retries: 5
   backend:
     image: g0tn/soat-docker-challenge-backend
+    environment:
+      - DB_HOST=db # Will resolve to network internal IP
     networks:
-      - docker-challenge
+      - backend-network
     ports:
       - 80:8080
     depends_on:
@@ -27,4 +29,5 @@ services:
         condition: service_healthy
     restart: unless-stopped
 networks:
-  docker-challenge:
+  backend-network:
+    
