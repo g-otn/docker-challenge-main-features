@@ -36,3 +36,6 @@ To build the backend image:
      | `APP_USER` | Internal user for running the app | `backend` |
      | `APP_FOLDER` | Working directory where the jar will be copied to | `/opt/app` |
      
+## Acknowledgments
+- Prof. Luiz Zenha and Prof. Matheus Pavani: Course teachers.
+- [marcelovbcfilho](https://github.com/marcelovbcfilho): Help with Docker Compose.
